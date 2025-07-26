@@ -153,6 +153,11 @@ func ShopBuyGacha3(s *enter.Session, request, response mx.Message) {
 // GenGachaCost 生成抽卡成本
 func GenGachaCost(s *enter.Session, cost *proto.ParcelCost) []*proto.ItemDB {
 	itemLisl := make([]*proto.ItemDB, 0)
+	
+	if cost == nil {
+		return itemLisl
+	}
+
 	for _, pi := range cost.ParcelInfos {
 		switch pi.Key.Type {
 		case proto.ParcelType_Item: // 物品
